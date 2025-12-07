@@ -61,12 +61,13 @@ Project ini adalah **Content Management System (CMS)** yang dibuat dengan **Lara
 ## Struktur CMS Secara Singkat
 
 project-cms-kaos-kaki/
-├─ app/ # Logika backend Laravel
-├─ resources/views # Blade templates untuk frontend
-├─ public/ # Aset publik (CSS, JS, gambar)
-├─ routes/ # Route untuk web & API
-├─ database/ # Migrasi & seeder
-└─ .env # Konfigurasi environment
+
+─ app/ # Logika backend Laravel
+─ resources/views # Blade templates untuk frontend
+─ public/ # Aset publik (CSS, JS, gambar)
+─ routes/ # Route untuk web & API
+─ database/ # Migrasi & seeder
+─ .env # Konfigurasi environment
 
 ## ⚙️ Persyaratan Sistem
 
@@ -79,24 +80,7 @@ Sebelum instalasi, pastikan sistem memenuhi kebutuhan berikut:
 -   MySQL/MariaDB atau PostgreSQL
 -   Node.js & npm
 -   Git
-
-**Ekstensi PHP wajib:**
-
--   OpenSSL
--   PDO
--   Mbstring
--   Tokenizer
--   XML
--   Ctype
--   JSON
--   BCMath
-
-**Opsional (untuk fitur tambahan / optimasi):**
-
--   Redis / Memcached (cache)
--   Imagick / GD (manipulasi gambar)
-
----
+-   Laragon/xampp
 
 ## 🛠 Instalasi CMS
 
