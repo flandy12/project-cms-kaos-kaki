@@ -53,7 +53,7 @@
 
             <div class="relative overflow-x-auto bg-white shadow-xs rounded-base border border-default">
                 <div class="bg-white shadow-md rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4">Laporan Penjualan Produk Kaos Kaki</h2>
+                    <h2 class="text-xl font-semibold mb-4">Laporan Penjualan Produk Toko</h2>
 
                     <div class="overflow-x-auto">
                         <div class="flex justify-between items-center mb-5">
@@ -62,10 +62,12 @@
                                     class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                             </div>
                             <div>
-                                <button id="exportExcel"
-                                    class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 shadow">
-                                    Export Excel
-                                </button>
+                                @can('report.download')
+                                    <button id="exportExcel"
+                                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 shadow">
+                                        Export Excel
+                                    </button>
+                                @endcan
                             </div>
                         </div>
                         <table class="min-w-full text-left border rounded-lg">
@@ -74,7 +76,7 @@
                                     <th class="py-3 px-4 border-b">#</th>
                                     <th class="py-3 px-4 border-b">Nama Produk</th>
                                     <th class="py-3 px-4 border-b">Warna</th>
-                                    <th class="py-3 px-4 border-b">Qty</th>
+                                    <th class="py-3 px-4 border-b">Qty Out</th>
                                     <th class="py-3 px-4 border-b">Harga</th>
                                     <th class="py-3 px-4 border-b">Total</th>
                                     <th class="py-3 px-4 border-b">Tanggal</th>
@@ -83,156 +85,29 @@
 
                             <tbody class="text-gray-600">
 
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">1</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Sport Ultra</td>
-                                    <td class="py-3 px-4 border-b">Hitam</td>
-                                    <td class="py-3 px-4 border-b">12</td>
-                                    <td class="py-3 px-4 border-b">Rp 25.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 300.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-03</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">2</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Ankle Soft</td>
-                                    <td class="py-3 px-4 border-b">Putih</td>
-                                    <td class="py-3 px-4 border-b">8</td>
-                                    <td class="py-3 px-4 border-b">Rp 20.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 160.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-04</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">3</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Casual Stripe</td>
-                                    <td class="py-3 px-4 border-b">Abu</td>
-                                    <td class="py-3 px-4 border-b">15</td>
-                                    <td class="py-3 px-4 border-b">Rp 22.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 330.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-06</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">4</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Running Pro</td>
-                                    <td class="py-3 px-4 border-b">Navy</td>
-                                    <td class="py-3 px-4 border-b">10</td>
-                                    <td class="py-3 px-4 border-b">Rp 27.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 270.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-07</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">5</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Harian Basic</td>
-                                    <td class="py-3 px-4 border-b">Cream</td>
-                                    <td class="py-3 px-4 border-b">20</td>
-                                    <td class="py-3 px-4 border-b">Rp 18.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 360.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-10</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">6</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Premium Wool</td>
-                                    <td class="py-3 px-4 border-b">Hitam</td>
-                                    <td class="py-3 px-4 border-b">5</td>
-                                    <td class="py-3 px-4 border-b">Rp 35.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 175.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-11</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">7</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Invisible Thin</td>
-                                    <td class="py-3 px-4 border-b">Putih</td>
-                                    <td class="py-3 px-4 border-b">14</td>
-                                    <td class="py-3 px-4 border-b">Rp 17.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 238.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-15</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">8</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Sekolah Anak</td>
-                                    <td class="py-3 px-4 border-b">Hitam</td>
-                                    <td class="py-3 px-4 border-b">18</td>
-                                    <td class="py-3 px-4 border-b">Rp 12.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 216.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-18</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">9</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Outdoor Thick</td>
-                                    <td class="py-3 px-4 border-b">Hijau Army</td>
-                                    <td class="py-3 px-4 border-b">6</td>
-                                    <td class="py-3 px-4 border-b">Rp 30.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 180.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-19</td>
-                                </tr>
-
-                                <tr class="hover:bg-gray-50">
-                                    <td class="py-3 px-4 border-b">10</td>
-                                    <td class="py-3 px-4 border-b font-medium">Kaos Kaki Sport Mesh</td>
-                                    <td class="py-3 px-4 border-b">Biru</td>
-                                    <td class="py-3 px-4 border-b">9</td>
-                                    <td class="py-3 px-4 border-b">Rp 24.000</td>
-                                    <td class="py-3 px-4 border-b">Rp 216.000</td>
-                                    <td class="py-3 px-4 border-b">2025-01-20</td>
-                                </tr>
+                                @foreach ($stockMovements as $product)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-3 px-4 border-b">{{ $loop->iteration }}</td>
+                                        <td class="py-3 px-4 border-b font-medium">{{ $product->product->name }}</td>
+                                        <td class="py-3 px-4 border-b">{{ $product->product->color }}</td>
+                                        <td class="py-3 px-4 border-b">{{ $product->stock_after }}</td>
+                                        <td class="py-3 px-4 border-b">
+                                            Rp{{ number_format($product->product->price) }}
+                                        </td>
+                                        <td class="py-3 px-4 border-b">
+                                           Rp{{ number_format($product->product->price * $product->stock_after) }}</td>
+                                        <td class="py-3 px-4 border-b">{{ $product->created_at }}</td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
+
+                        <div>
+                            {{ $stockMovements->links() }}
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="flex items-center justify-between mt-4 px-4">
-
-                <!-- Info halaman -->
-                <p class="text-sm text-gray-600">
-                    Menampilkan <span class="font-semibold">1–10</span> dari <span class="font-semibold">50</span>
-                    data
-                </p>
-
-                <!-- Pagination -->
-                <nav class="flex items-center space-x-1">
-
-                    <!-- Previous -->
-                    <button
-                        class="px-3 py-2 border rounded-lg text-gray-500 bg-white hover:bg-gray-100 cursor-pointer">
-                        ‹ Prev
-                    </button>
-
-                    <!-- Number -->
-                    <button class="px-3 py-2 border rounded-lg bg-blue-600 text-white font-medium">
-                        1
-                    </button>
-
-                    <button class="px-3 py-2 border rounded-lg text-gray-700 bg-white hover:bg-gray-100">
-                        2
-                    </button>
-
-                    <button class="px-3 py-2 border rounded-lg text-gray-700 bg-white hover:bg-gray-100">
-                        3
-                    </button>
-
-                    <span class="px-3 py-2 text-gray-500">...</span>
-
-                    <button class="px-3 py-2 border rounded-lg text-gray-700 bg-white hover:bg-gray-100">
-                        5
-                    </button>
-
-                    <!-- Next -->
-                    <button
-                        class="px-3 py-2 border rounded-lg text-gray-500 bg-white hover:bg-gray-100 cursor-pointer">
-                        Next ›
-                    </button>
-
-                </nav>
-
             </div>
 
         </div>

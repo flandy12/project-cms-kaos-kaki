@@ -5,4 +5,4 @@
     </svg>
 </a> --}}
 
-<img src="{{ asset('images/logo.png') }}" alt="Amel Logo" class="w-20 h-20"/>
+<img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-20 h-20"/>

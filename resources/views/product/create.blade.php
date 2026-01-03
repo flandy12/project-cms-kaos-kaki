@@ -6,15 +6,6 @@
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
                 <h1 class="text-2xl font-semibold">Tambah Produk Baru</h1>
-
-                <a href="/products" class="flex items-center gap-2 text-gray-600 hover:text-gray-900">
-                    <!-- Back Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-                    </svg>
-                    Kembali
-                </a>
             </div>
 
             <!-- Form -->
@@ -79,26 +70,13 @@
                         placeholder="Tulis deskripsi produk"></textarea>
                 </div>
 
-                <!-- Upload Foto -->
-                <div>
-                    <label class="block mb-1 font-medium">Foto Produk</label>
-                    <input type="file" name="image"
-                        class="block w-full text-sm border-gray-300 rounded-lg cursor-pointer bg-gray-50">
-                </div>
-
                 <!-- Tombol Submit -->
-                <div class="pt-4">
-                    <button type="submit"
-                        class="w-full flex items-center justify-center gap-2 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
-
-                        <!-- Add Icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                        </svg>
-
-                        Tambah Produk
+                <div class="flex gap-5">
+                    <button type="submit" class="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700">
+                        <a href="{{ route('users') }}">Batal</a>
                     </button>
+                    <button type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Simpan</button>
                 </div>
             </form>
 

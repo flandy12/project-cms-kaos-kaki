@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,34 +34,13 @@ Route::middleware([
         ]);
     })->name('dashboard');
 
-    Route::get('/users', function () {
-        return view('users/index');
-    })->name('users');
+    Route::resource('users', UserController::class);
 
-    Route::get('/roles', function () {
-        return view('roles/index');
-    })->name('roles');
+    Route::resource('roles', RoleController::class);
 
-    Route::get('/permissions', function () {
-        return view('permissions/index');
-    })->name('permissions');
+    Route::resource('permissions', PermissionController::class);
 
-    Route::prefix('products')->group(function () {
-        Route::get('/', function () {
-            return view('product/index');
-        })->name('product');
+    Route::resource('product', ProductController::class);
 
-        Route::get('/create', function () {
-            return view('product/create');
-        })->name('product.create');
-    });
-
-    Route::get('/report', function () {
-        return view('report/index',  [
-            'labels'    => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            'product'   => [5, 10, 3, 12, 8, 11, 6, 10, 14, 7],
-            'resources' => [3, 6, 2, 7, 4, 6, 3, 7, 8, 4],
-            'values' => [120, 200, 150, 300, 250]
-        ]);
-    })->name('report');
+    Route::get('/report', [ProductController::class, 'report'])->name('report');
 });
