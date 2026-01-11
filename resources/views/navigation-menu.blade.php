@@ -4,11 +4,10 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center flex-col">
+                <div class=" flex items-center flex-col">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-mark class="block h-10 w-auto" />
+                        <x-application-mark class="block h-14" />
                     </a>
-                    <span class="font-semibold">Toko Bangunan</span>
                 </div>
 
                 <!-- Navigation Links -->
@@ -17,29 +16,37 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     @can('user.view')
-                    <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                        User
-                    </x-nav-link>
+                        <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+                            User
+                        </x-nav-link>
                     @endcan
                     @can('role.view')
-                     <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
-                        Role
-                    </x-nav-link>
+                        <x-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
+                            Role
+                        </x-nav-link>
                     @endcan
                     @can('permission.view')
-                     <x-nav-link href="{{ route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
-                        Permission
-                    </x-nav-link>
+                        <x-nav-link href="{{ route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
+                            Permission
+                        </x-nav-link>
                     @endcan
                     @can('product.view')
-                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
-                        Produk
-                    </x-nav-link>
+                        <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                            Product
+                        </x-nav-link>
                     @endcan
-                    @can('report.view')
-                    <x-nav-link href="{{ route('report') }}" :active="request()->routeIs('report')">
-                        Report Penjualan
+                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                        Stock In 
                     </x-nav-link>
+
+                    <x-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                        Stock Out
+                    </x-nav-link>
+
+                    @can('report.view')
+                        <x-nav-link href="{{ route('report') }}" :active="request()->routeIs('report')">
+                            Report
+                        </x-nav-link>
                     @endcan
                 </div>
             </div>

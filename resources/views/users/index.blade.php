@@ -50,12 +50,12 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td class="border px-4 py-2 text-center">{{ $user->name }}</td>
+                                <td class="border px-4 py-2 text-center capitalize">{{ $user->name }}</td>
                                 <td class="border px-4 py-2 text-center">{{ $user->email }}</td>
-                                <td class="border px-4 py-2">
+                                <td class="border px-4 py-2 text-center capitalize">
                                     {{ $user->roles->pluck('name')->join(', ') }}
                                 </td>
-                                <td class="border px-4 py-2">
+                                <td class="border px-4 py-2 text-center">
                                     <span
                                         class="px-2 py-1 rounded text-sm text-center
                             {{ $user->status ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700 text-center' }}">

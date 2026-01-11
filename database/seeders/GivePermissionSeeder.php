@@ -43,7 +43,6 @@ class GivePermissionSeeder extends Seeder
             ->givePermissionTo([
                 'product.view', 'product.create', 'product.update', 'product.delete', 'report.view', 'report.download',
             ]);
-        
 
         User::where('email', 'admin@gmail.com')
             ->firstOrFail()

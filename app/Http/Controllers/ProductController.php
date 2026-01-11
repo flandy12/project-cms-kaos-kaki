@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\StockMovement;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -101,20 +103,86 @@ class ProductController extends Controller
 
     public function report()
     {
-        abort_if(
-            ! auth()->check() || ! auth()->user()->hasRole('owner'),
-            404
-        );
+        $year = now()->year;
 
-        $stockMovements = StockMovement::with('product')->latest()->paginate(10);
+        /**
+         * ===========================
+         * DATA BULANAN (CHART)
+         * ===========================
+         */
+        $monthlyIncome = StockMovement::query()
+            ->from('stock_movements as sm')
+            ->join('products as p', 'p.id', '=', 'sm.product_id')
+            ->where('sm.type', 'out')
+            ->whereYear('sm.created_at', $year)
+            ->selectRaw('
+        MONTH(sm.created_at) as month,
+        SUM(sm.quantity * p.price) as total_income,
+        SUM(sm.quantity) as total_sold
+    ')
+            ->groupByRaw('MONTH(sm.created_at)')
+            ->orderByRaw('MONTH(sm.created_at)')
+            ->get();
 
+        /**
+         * FORMAT UNTUK CHART (JAN–DES)
+         */
+        $months = [];
+        $incomeData = [];
+        $soldData = [];
 
-        return view('report/index',  [
-            'labels'    => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-            'product'   => [5, 10, 3, 12, 8, 11, 6, 10, 14, 7],
-            'resources' => [3, 6, 2, 7, 4, 6, 3, 7, 8, 4],
-            'values'    => [120, 200, 150, 300, 250],
-            'stockMovements'  => $stockMovements
+        for ($m = 1; $m <= 12; $m++) {
+            $row = $monthlyIncome->firstWhere('month', $m);
+
+            $months[]     = Carbon::create()->month($m)->format('M');
+            $incomeData[] = (int) ($row->total_income ?? 0);
+            $soldData[]   = (int) ($row->total_sold ?? 0);
+        }
+
+        /**
+         * ===========================
+         * DATA TABEL LAPORAN
+         * ===========================
+         */
+        $stockMovements = StockMovement::with('product')
+            ->where('type', 'out')
+            ->latest()
+            ->paginate(10);
+
+        /**
+         * ===========================
+         * RETURN VIEW
+         * ===========================
+         */
+        return view('report.index', [
+            'months'         => $months,
+            'monthlyIncome'  => $incomeData,
+            'monthlySold'    => $soldData,
+            'avgPrice'       => Product::avg('price'),
+            'stockMovements' => $stockMovements,
+        ]);
+    }
+
+    public function incomeByDate(Request $request)
+    {
+        $request->validate([
+            'start' => 'required|date',
+            'end'   => 'required|date|after_or_equal:start',
+        ]);
+
+        $data = DB::table('orders')
+            ->selectRaw('DATE(created_at) as date, SUM(total) as income')
+            ->whereBetween('created_at', [
+                Carbon::parse($request->start)->startOfDay(),
+                Carbon::parse($request->end)->endOfDay(),
+            ])
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        return response()->json([
+            'categories' => $data->pluck('date'),
+            'series' => $data->pluck('income'),
         ]);
     }
 }
